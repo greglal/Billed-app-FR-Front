@@ -163,7 +163,7 @@ describe("Given I am connected as an employee",
 });
 
 // test d'intégration GET
-describe("Given I am a user connected as Employee", () => {Ré
+describe("Given I am a user connected as Employee", () => {
     const mockStore = {
         bills: jest.fn(() => ({
             list: jest.fn(() => Promise.resolve([
@@ -206,6 +206,7 @@ describe("Given I am a user connected as Employee", () => {Ré
             BillsUI({data: bills});
     });
 
+    // ********** test if retrieve bills
     test('getBills successfully retrieves bills from the mock store', async () => {
         const billsComponent = new Bills({ document, onNavigate, store: mockStore });
         const getBillsPromise = billsComponent.getBills();
@@ -223,6 +224,7 @@ describe("Given I am a user connected as Employee", () => {Ré
         expect(billsFromStore.length).toBe(2); // Adjust the length based on mocked data
     });
 
+    // ********** test id there's an error
     test('getBills handles error in list method', async () => {
         const mockError = new Error('Simulated error in list method');
 
@@ -248,15 +250,7 @@ describe("Given I am a user connected as Employee", () => {Ré
         }
     });
 
-
-    const mockFormatDate = jest.fn(() => {
-        if (typeof jest.fn().mockRejectedValue === 'function') {
-            return jest.fn().mockRejectedValue(new Error('Invalid date format'));
-        } else {
-            throw new Error('Invalid date format');
-        }
-    });
-
+    // ********** test date format
     test('getBills returns a bill with an unformatted date when formatDate throws an error', async () => {
         // Mock the store
         const mockStore = {
@@ -268,9 +262,6 @@ describe("Given I am a user connected as Employee", () => {Ré
                 ])),
             })),
         };
-
-        // Simulate an error in formatDate
-        mockFormatDate.mockReturnValue('invalid-date-format');
 
         const billsComponent = new Bills({ document, onNavigate, store: mockStore });
         const bills = await billsComponent.getBills();
