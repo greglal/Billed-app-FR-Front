@@ -145,6 +145,12 @@ export default class {
       this.counter ++
     }
 
+    // Release former event listeners
+    bills.forEach(bill => {
+      $(`#open-bill${bill.id}`).off('click');
+    });
+
+
     bills.forEach(bill => {
       $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
     })
