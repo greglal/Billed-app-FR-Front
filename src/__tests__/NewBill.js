@@ -215,7 +215,6 @@ describe("When I'm on NewBill Page and I add a new bill", () => {
             localStorage,
         });
 
-
         const formNewBill = screen.getByTestId("form-new-bill");
         const handleSubmit = jest.fn(newBills.handleSubmit);
 
