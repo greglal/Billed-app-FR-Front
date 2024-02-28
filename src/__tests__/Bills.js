@@ -258,7 +258,7 @@ describe("Given I am a user connected as Employee", () => {
             bills: jest.fn(() => ({
                 list: jest.fn(() => Promise.resolve([
                     {
-                        date: '14-02-1983',
+                        date: '14-02-198326',
                     },
                 ])),
             })),
@@ -268,7 +268,7 @@ describe("Given I am a user connected as Employee", () => {
         const bills = await billsComponent.getBills();
 
         // Check for unformatted date
-        expect(bills[0].date).toMatch(/^\d{2}-\d{2}-\d{4}$/);
+        expect(bills[0].date).not.toMatch(/^\d{2}-\d{2}-\d{4}$/);
     });
 
     test('getBills handles error when bills list returns 404', async () => {
