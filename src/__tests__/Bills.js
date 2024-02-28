@@ -152,12 +152,13 @@ describe("Given I am connected as an employee",
                 const html = BillsUI({
                     data: [],
                     loading: false,
-                    error: 'Error!'
+                    error: 'Error!',
                 });
                 document.body.innerHTML = html;
 
+
                 // screen should show Erreur
-                expect(screen.getAllByText('Erreur')).toBeTruthy();
+                expect(screen.getAllByText('Error!')).toBeTruthy();
             });
         });
 });
